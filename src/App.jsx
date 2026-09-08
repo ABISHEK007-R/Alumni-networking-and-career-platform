@@ -1,9 +1,8 @@
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 
+import StudentDashboard from "./pages/student/StudentDashboard";
 function App() {
-  return <Login />;
-  return <Register />;
+
+    return <StudentDashboard />;
 }
 
 export default App;
