@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
@@ -29,11 +29,6 @@ const Register = () => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
-
-  console.log({
-    userType,
-    ...formData,
-  });
 
   alert("Registration Successful!");
 

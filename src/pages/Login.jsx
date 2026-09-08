@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 const Login = () => {
@@ -9,12 +9,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Login Data:", {
-      email,
-      password,
-    });
-
-    alert("Login Successful!");
+    navigate("/student-dashboard");
   };
 
   return (
