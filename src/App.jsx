@@ -15,6 +15,7 @@ import InternshipPosts from "./pages/alumni/InternshipPosts";
 import Referrals from "./pages/alumni/Referrals";
 import AlumniDirectory from "./pages/AlumniDirectory";
 import DashboardRedirect from "./pages/DashboardRedirect";
+import AICareerAssistant from "./pages/AICareerAssistant";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const protectedPage = (element, requiredRole) => (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/career-path" element={protectedPage(<CareerPath />, "STUDENT")} />
         <Route path="/messages" element={protectedPage(<Messages />)} />
         <Route path="/profile" element={protectedPage(<Profile />)} />
+        <Route path="/ai-assistant" element={protectedPage(<AICareerAssistant />)} />
         <Route path="/student-network" element={protectedPage(<StudentNetwork />, "ALUMNI")} />
         <Route path="/mentorship-requests" element={protectedPage(<MentorshipRequests />, "ALUMNI")} />
         <Route path="/internship-posts" element={protectedPage(<InternshipPosts />, "ALUMNI")} />

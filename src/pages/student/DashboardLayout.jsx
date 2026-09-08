@@ -11,6 +11,7 @@ const studentNavigationItems = [
   ["/mentors", "✦", "Mentors"],
   ["/internships", "▣", "Internships"],
   ["/career-path", "⌁", "Career Path"],
+  ["/ai-assistant", "✦", "AI Career Assistant"],
   ["/messages", "✉", "Messages"],
   ["/profile", "◉", "Profile"],
 ];
@@ -21,6 +22,7 @@ const alumniNavigationItems = [
   ["/mentorship-requests", "✦", "Mentorship Requests"],
   ["/internship-posts", "▣", "Internship Posts"],
   ["/referrals", "↗", "Referrals"],
+  ["/ai-assistant", "✦", "AI Career Assistant"],
   ["/messages", "✉", "Messages"],
   ["/profile", "◉", "Profile"],
 ];

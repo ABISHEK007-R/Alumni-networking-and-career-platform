@@ -1,4 +1,344 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "DM Sans", sans-serif;
+  background: #f4f7fb;
+  color: #18233b;
+}
+
+.ai-chat-shell {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #e4eaf2;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(31, 46, 81, 0.07);
+  padding: 0 24px 20px;
+}
+
+.ai-chat-shell::before {
+  content: "";
+  display: block;
+  height: 4px;
+  margin: 0 -24px 20px;
+  background: linear-gradient(90deg, #1e3a8a, #5b82e8 55%, #92f1cc);
+}
+
+.ai-chat-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.ai-assistant-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: #eaf8f2;
+  color: #208960;
+  font: 800 12px "Manrope", sans-serif;
+  letter-spacing: 0.4px;
+}
+
+.ai-chat-heading h3 {
+  margin: 0 0 3px;
+  color: #18233b;
+  font: 800 15px "Manrope", sans-serif;
+}
+
+.ai-chat-heading p {
+  margin: 0;
+  color: #7b879b;
+  font-size: 12px;
+}
+
+.ai-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: #238a62;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ai-status span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #35bb81;
+  box-shadow: 0 0 0 3px #eaf8f2;
+}
+
+.ai-chat-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 18px 0 14px;
+}
+
+.ai-examples-label {
+  width: 100%;
+  color: #8b96aa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.ai-example-pill {
+  border: 1px solid #dce5f7;
+  background: #f7f9ff;
+  color: #405cae;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ai-example-pill:hover {
+  border-color: #aebfe9;
+  background: #eef3ff;
+  transform: translateY(-1px);
+}
+
+.ai-chat-window {
+  min-height: 350px;
+  max-height: 530px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 18px 12px 18px 2px;
+  margin: 0 -12px 18px 0;
+  border-top: 1px solid #f0f2f6;
+  border-bottom: 1px solid #f0f2f6;
+  scrollbar-color: #c8d2e3 transparent;
+}
+
+.ai-message {
+  display: flex;
+  width: 100%;
+}
+
+.ai-message.user {
+  justify-content: flex-end;
+}
+
+.ai-bubble {
+  max-width: min(78%, 760px);
+  padding: 14px 17px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  word-break: break-word;
+}
+
+.ai-message.assistant .ai-bubble {
+  background: #f5f7fb;
+  color: #24324f;
+  border: 1px solid #e8edf4;
+  border-top-left-radius: 5px;
+}
+
+.ai-message.user .ai-bubble {
+  background: linear-gradient(135deg, #203d94, #2957d8);
+  color: #ffffff;
+  border-top-right-radius: 5px;
+  box-shadow: 0 5px 14px rgba(32, 61, 148, 0.16);
+}
+
+.ai-bubble-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #238a62;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.ai-bubble p {
+  margin: 0 0 9px;
+}
+
+.ai-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-bubble h4 {
+  margin: 15px 0 7px;
+  color: #1e3a8a;
+  font: 800 14px/1.35 "Manrope", sans-serif;
+}
+
+.ai-bubble h4:first-of-type {
+  margin-top: 0;
+}
+
+.ai-response-space {
+  height: 4px;
+}
+
+.ai-response-list-item {
+  display: grid;
+  grid-template-columns: 15px 1fr;
+  gap: 2px;
+  margin: 4px 0;
+}
+
+.ai-response-list-item > span {
+  color: #4b70d2;
+  font-weight: 800;
+}
+
+.ai-response-list-item .ai-response-copy {
+  color: inherit;
+  font-weight: inherit;
+  min-width: 0;
+}
+
+.ai-bubble code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #e9eef8;
+  color: #385398;
+  font-family: Consolas, monospace;
+  font-size: 0.92em;
+}
+
+.loading-bubble {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 84px;
+}
+
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8ba2d9;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.loading-dot:nth-child(2) { animation-delay: 0.15s; }
+.loading-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes pulse {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.ai-chat-input-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 5px;
+  border: 1px solid #dfe5ef;
+  border-radius: 11px;
+  background: #fff;
+  transition: 0.2s ease;
+}
+
+.ai-chat-input-row:focus-within {
+  border-color: #8ca9ed;
+  box-shadow: 0 0 0 3px rgba(88, 120, 255, 0.1);
+}
+
+.ai-chat-input-row input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: 7px;
+  padding: 11px 12px;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.ai-chat-input-row button {
+  border: 0;
+  border-radius: 7px;
+  background: #1e3a8a;
+  color: #fff;
+  padding: 11px 18px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ai-chat-input-row button:hover:not(:disabled) {
+  background: #15336f;
+  transform: translateY(-1px);
+}
+
+.ai-chat-input-row button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ai-error-banner {
+  background: #fff2f2;
+  color: #a63a3a;
+  border: 1px solid #f2c3c3;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .ai-chat-shell {
+    padding: 0 14px 14px;
+  }
+
+  .ai-chat-shell::before {
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+
+  .ai-chat-heading {
+    align-items: flex-start;
+  }
+
+  .ai-status {
+    font-size: 0;
+  }
+
+  .ai-status span {
+    margin-top: 4px;
+  }
+
+  .ai-example-pill {
+    width: 100%;
+    text-align: left;
+  }
+
+  .ai-chat-window {
+    min-height: 300px;
+    max-height: 460px;
+    margin-right: -4px;
+  }
+
+  .ai-chat-input-row {
+    padding: 4px;
+    flex-direction: column;
+  }
+
+  .ai-chat-input-row button {
+    width: 100%;
+  }
+
+  .ai-bubble {
+    max-width: 94%;
+  }
 }
