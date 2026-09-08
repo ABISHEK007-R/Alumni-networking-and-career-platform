@@ -1,0 +1,122 @@
+.network-request-list {
+  display: grid;
+  gap: 16px;
+}
+
+.network-request-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #edf0f5;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 7px 25px rgba(31, 46, 81, 0.045);
+}
+
+.network-request-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4169e1, #7aa6ff);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.network-request-body {
+  flex: 1;
+}
+
+.network-request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.network-request-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #18233b;
+}
+
+.request-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.request-status.pending {
+  background: #fff4d8;
+  color: #a86e00;
+}
+
+.request-status.accepted {
+  background: #eaf8f2;
+  color: #238a62;
+}
+
+.request-status.rejected {
+  background: #fff0f0;
+  color: #a93b3b;
+}
+
+.network-request-body p {
+  margin: 0;
+  color: #64718a;
+  font-size: 13px;
+}
+
+.network-request-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.network-request-actions button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.network-accept {
+  background: #ebf8f2;
+  color: #238a62;
+}
+
+.network-reject {
+  background: #fff0f0;
+  color: #a93b3b;
+}
+
+.directory-connect-button {
+  border: none;
+  border-radius: 8px;
+  background: #ebf8f2;
+  color: #238a62;
+  padding: 9px 12px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.directory-connect-button.is-requested {
+  background: #eef2ff;
+  color: #3d5fc2;
+}
+
+.directory-connect-button:disabled {
+  opacity: 0.8;
+  cursor: default;
+}

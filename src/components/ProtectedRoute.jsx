@@ -1,4 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
+import { clearAuthStorage } from "../auth/storage";
 
 const ProtectedRoute = ({ children, requiredRole }) => {
   const location = useLocation();
@@ -8,17 +9,15 @@ const ProtectedRoute = ({ children, requiredRole }) => {
   try {
     user = storedUser ? JSON.parse(storedUser) : null;
   } catch {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("alumniUser");
-    localStorage.removeItem("currentUser");
+    clearAuthStorage();
   }
 
   if (!token || !user) {
-    return <Navigate to="/" replace state={{ from: location }} />;
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
   if (requiredRole && user.role !== requiredRole) {
-    return <Navigate to={user.role === "ALUMNI" ? "/alumni/dashboard" : "/student/dashboard"} replace />;
+    return <Navigate to={user.role === "ALUMNI" ? "/alumni/dashboard" : "/dashboard"} replace />;
   }
 
   return children;

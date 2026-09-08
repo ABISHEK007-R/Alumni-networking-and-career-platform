@@ -1,0 +1,34 @@
+import axios from "axios";
+import { clearAuthStorage } from "../auth/storage";
+
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
+const api = axios.create({
+  baseURL: API_BASE_URL,
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("authToken");
+  if (token) {
+    config.headers = config.headers || {};
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const requestUrl = error.config?.url || "";
+    const isAuthenticationRequest = requestUrl.includes("/auth/");
+
+    if (error.response?.status === 401 && !isAuthenticationRequest) {
+      clearAuthStorage();
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default api;
+export { API_BASE_URL };

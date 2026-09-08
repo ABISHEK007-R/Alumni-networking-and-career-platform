@@ -1,23 +1,39 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import api from "../api/client";
+import { clearAuthStorage } from "../auth/storage";
 import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(location.state?.message || "");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setMessage("");
+    clearAuthStorage();
 
-    // Frontend-only demo access keeps the dashboard reviewable while the API is unavailable.
-    const demoUser = { id: "demo-student", name: "Demo Student", email, role: "STUDENT" };
-    localStorage.setItem("authToken", "frontend-demo-token");
-    localStorage.setItem("alumniUser", JSON.stringify(demoUser));
-    localStorage.setItem("currentUser", JSON.stringify(demoUser));
-    navigate("/student/dashboard");
+    try {
+      const response = await api.post("/auth/login", { email, password });
+      const authenticatedUser = response.data;
+
+      if (!authenticatedUser?.token) {
+        throw new Error("Login succeeded without a JWT token.");
+      }
+
+      localStorage.setItem("authToken", authenticatedUser.token);
+      localStorage.setItem("currentUser", JSON.stringify(authenticatedUser));
+      localStorage.setItem("alumniUser", JSON.stringify(authenticatedUser));
+
+      navigate(authenticatedUser.role === "ALUMNI" ? "/alumni/dashboard" : "/dashboard");
+    } catch (requestError) {
+      setError(requestError.response?.data?.message || requestError.message || "Unable to login. Check your email and password.");
+    }
   };
 
   return (
@@ -59,6 +75,7 @@ const Login = () => {
         </p>
 
         <form onSubmit={handleSubmit}>
+          {message && <p className="success-banner" role="status">{message}</p>}
           {error && <p className="error-banner" role="alert">{error}</p>}
           <div style={{ marginBottom: "15px" }}>
             <label>Email</label>

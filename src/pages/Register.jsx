@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/client";
 import "./Register.css";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8081/api";
 
 const Register = () => {
   const [userType, setUserType] = useState("");
@@ -40,7 +38,7 @@ const Register = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post(`${API_URL}/auth/register`, {
+      await api.post("/auth/register", {
         name: formData.name,
         email: formData.email,
         password: formData.password,

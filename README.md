@@ -29,7 +29,7 @@ cd backend
 .\mvnw.cmd spring-boot:run
 ```
 
-The wrapper downloads Maven automatically if needed. The API runs at `http://localhost:8080` by default. Set `$env:PORT` if you need another port.
+The wrapper downloads Maven automatically if needed. The API runs at `http://localhost:8081` in the local setup. Set `$env:PORT` if you need another port.
 
 ## Start the frontend
 
@@ -40,7 +40,7 @@ npm install
 npm run dev
 ```
 
-The frontend calls `http://localhost:8080/api` by default. Set `VITE_API_URL` in a root `.env` file if the backend is hosted elsewhere.
+The frontend calls `http://localhost:8081/api` by default. Set `VITE_API_URL` in a root `.env` file if the backend is hosted elsewhere.
 
 The student dashboard is available at `/student/dashboard`. The previous `/student` path remains as a compatibility route.
 
