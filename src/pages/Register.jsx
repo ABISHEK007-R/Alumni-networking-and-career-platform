@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Register.css";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
 
 const Register = () => {
   const [userType, setUserType] = useState("");
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     college: "",
@@ -27,13 +33,33 @@ const Register = () => {
     });
   };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    setError("");
+    setIsSubmitting(true);
 
-  alert("Registration Successful!");
-
-  navigate("/");
-};
+    try {
+      await axios.post(`${API_URL}/auth/register`, {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role: userType.toUpperCase(),
+        college: formData.college,
+        company: formData.company,
+        skills: formData.skills,
+        location: formData.location,
+        certifications: formData.certifications,
+        projects: formData.projects,
+      });
+      setMessage("Registration successful. Redirecting to login...");
+      window.setTimeout(() => navigate("/"), 900);
+    } catch (requestError) {
+      setError(requestError.response?.data?.message || "Unable to register. Check that the backend is running.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="register-container">
@@ -66,6 +92,9 @@ const handleSubmit = (e) => {
 
         {userType && (
           <form onSubmit={handleSubmit} className="register-form">
+
+            {message && <p className="success-banner" role="status">{message}</p>}
+            {error && <p className="error-banner" role="alert">{error}</p>}
 
             <h2>{userType} Registration</h2>
 
@@ -201,7 +230,7 @@ const handleSubmit = (e) => {
             </div>
 
             <button className="register-btn">
-              Register
+              {isSubmitting ? "Creating account..." : "Register"}
             </button>
             <div style={{ textAlign: "center", marginTop: "15px" }}>
   <p>Already have an account?</p>

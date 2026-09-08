@@ -1,15 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
 
-    navigate("/student-dashboard");
+    // Frontend-only demo access keeps the dashboard reviewable while the API is unavailable.
+    const demoUser = { id: "demo-student", name: "Demo Student", email, role: "STUDENT" };
+    localStorage.setItem("authToken", "frontend-demo-token");
+    localStorage.setItem("alumniUser", JSON.stringify(demoUser));
+    localStorage.setItem("currentUser", JSON.stringify(demoUser));
+    navigate("/student/dashboard");
   };
 
   return (
@@ -51,6 +59,7 @@ const Login = () => {
         </p>
 
         <form onSubmit={handleSubmit}>
+          {error && <p className="error-banner" role="alert">{error}</p>}
           <div style={{ marginBottom: "15px" }}>
             <label>Email</label>
             <input

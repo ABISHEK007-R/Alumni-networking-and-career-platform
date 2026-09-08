@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./StudentDashboard.css";
 
 const navigationItems = [
-  ["/student-dashboard", "▦", "Dashboard"],
+  ["/student/dashboard", "▦", "Dashboard"],
   ["/alumni-network", "◎", "Alumni Network"],
   ["/mentors", "✦", "Mentors"],
   ["/internships", "▣", "Internships"],
@@ -20,12 +20,12 @@ const DashboardLayout = ({ children, title = "Welcome back, Student", eyebrow = 
         <div className="brand"><span className="brand-mark">AC</span><span>Alumni Connect <b>AI</b></span></div>
         <nav className="sidebar-nav" aria-label="Dashboard navigation">
           {navigationItems.map(([path, icon, label]) => (
-            <NavLink className="nav-item" to={path} key={path} end={path === "/student-dashboard"}>
+            <NavLink className="nav-item" to={path} key={path} end={path === "/student/dashboard"}>
               <span>{icon}</span> {label}{label === "Messages" && <em>3</em>}
             </NavLink>
           ))}
         </nav>
-        <button className="logout-button" onClick={() => navigate("/")}><span>↪</span> Logout</button>
+        <button className="logout-button" onClick={() => { localStorage.removeItem("authToken"); localStorage.removeItem("alumniUser"); localStorage.removeItem("currentUser"); navigate("/", { replace: true }); }}><span>↪</span> Logout</button>
       </aside>
       <main className="dashboard-main">
         <header className="topbar">

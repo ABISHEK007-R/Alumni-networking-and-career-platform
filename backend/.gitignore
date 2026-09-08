@@ -1,0 +1,5 @@
+# Generated Maven distribution and local H2 data
+.mvn/apache-maven-*/
+data/
+*.mv.db
+*.trace.db
