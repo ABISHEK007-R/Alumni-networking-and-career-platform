@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 const Register = () => {
   const [userType, setUserType] = useState("");
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     college: "",
@@ -26,16 +27,18 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    console.log({
-      userType,
-      ...formData,
-    });
+  console.log({
+    userType,
+    ...formData,
+  });
 
-    alert("Registration Successful!");
-  };
+  alert("Registration Successful!");
+
+  navigate("/");
+};
 
   return (
     <div className="register-container">
@@ -205,7 +208,17 @@ const Register = () => {
             <button className="register-btn">
               Register
             </button>
+            <div style={{ textAlign: "center", marginTop: "15px" }}>
+  <p>Already have an account?</p>
 
+  <button
+    type="button"
+    onClick={() => navigate("/")}
+    className="back-btn"
+  >
+    Login
+  </button>
+</div>
             <button
               type="button"
               className="back-btn"
@@ -218,6 +231,7 @@ const Register = () => {
         )}
       </div>
     </div>
+    
   );
 };
 

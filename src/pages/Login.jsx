@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -111,18 +113,19 @@ const Login = () => {
         >
           <p>Don't have an account?</p>
 
-          <button
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#10b981",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-            }}
-          >
-            Register
-          </button>
+<button
+  onClick={() => navigate("/register")}
+  style={{
+    padding: "10px 20px",
+    backgroundColor: "#10b981",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+  }}
+>
+  Register
+</button>
         </div>
       </div>
     </div>
