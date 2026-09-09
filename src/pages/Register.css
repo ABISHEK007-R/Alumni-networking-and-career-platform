@@ -1,193 +1,26 @@
-.register-container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f6f8f6;
-  padding: 20px;
-}
-
-.register-card {
-  width: 100%;
-  max-width: 600px;
-  background: white;
-  border: 1px solid #e5eae6;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 14px 45px rgba(23, 55, 31, 0.08);
-}
-
-.register-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.logo-badge {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 15px;
-  background: #2e8b3c;
-  color: white;
-  border-radius: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-icon {
-  width: 32px;
-  height: 32px;
-}
-
-.register-header h1 {
-  font-size: 28px;
-  color: #17231b;
-  margin-bottom: 8px;
-}
-
-.register-header p {
-  color: #7d867f;
-  font-size: 15px;
-}
-
-.error-banner {
-  background: #fdeceb;
-  color: #c0392b;
-  padding: 12px 16px;
-  border-radius: 10px;
-  margin-bottom: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-}
-
-.register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-group label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #28382c;
-}
-
-.form-group input, .form-group select {
-  height: 50px;
-  padding: 0 16px;
-  border: 1px solid #dce3dd;
-  border-radius: 10px;
-  font-size: 14px;
-  color: #17231b;
-  transition: 0.2s;
-  width: 100%;
-  box-sizing: border-box;
-  background: transparent;
-}
-
-.form-group input:focus, .form-group select:focus {
-  border-color: #2e8b3c;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(46, 139, 60, 0.1);
-}
-
-.register-btn {
-  width: 100%;
-  height: 50px;
-  border: none;
-  border-radius: 10px;
-  background: #2e8b3c;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-  margin-top: 10px;
-}
-
-.register-btn:hover {
-  background: #247432;
-}
-
-.register-footer {
-  text-align: center;
-  margin-top: 25px;
-  font-size: 14px;
-  color: #7c857e;
-}
-
-.register-footer a {
-  color: #2e8b3c;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.register-footer a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 600px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .register-card {
-    padding: 30px 20px;
-  }
-}
-.role-selection {
-  text-align: center;
-}
-
-.role-btn {
-  width: 200px;
-  height: 50px;
-  margin: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #2563eb;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.role-btn:hover {
-  background: #1d4ed8;
-}
-
-.back-btn {
-  width: 100%;
-  height: 50px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #6b7280;
-  color: white;
-  cursor: pointer;
-}
-
-.success-banner {
-  background: #eaf8f2;
-  color: #208960;
-  padding: 12px 16px;
-  border-radius: 10px;
-  margin-bottom: 24px;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-}
+.register-panel { align-content: start; padding-top: clamp(28px, 6vh, 70px); padding-bottom: 30px; }
+.register-card { width: min(100%, 620px); }
+.register-form { display: grid; gap: 18px; }
+.role-selection h3 { margin: 0 0 7px; color: #172554; font: 800 18px "Manrope", sans-serif; }
+.role-selection > p { margin: 0 0 20px; color: #64748b; font-size: 12px; }
+.role-btn { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 13px; width: 100%; margin: 10px 0; padding: 16px; border: 1px solid #dbe4f2; border-radius: 12px; background: #fff; color: #172554; text-align: left; cursor: pointer; transition: 0.2s ease; }
+.role-btn:hover { border-color: #7ea4f7; background: #f8fbff; box-shadow: 0 8px 18px rgba(37, 99, 235, 0.1); transform: translateY(-2px); }
+.role-icon { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 10px; background: #eef4ff; color: #2563eb; font-size: 20px; }
+.role-btn-alumni .role-icon { background: #f3eaff; color: #7c3aed; }
+.role-btn strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.role-btn small { display: block; color: #64748b; font-size: 11px; line-height: 1.4; }
+.role-btn > b { color: #2563eb; font-size: 19px; font-weight: 500; }
+.role-btn-alumni > b { color: #7c3aed; }
+.register-form-heading { position: relative; padding-bottom: 2px; }
+.register-form-heading h3 { margin: 10px 0 0; color: #172554; font: 800 19px "Manrope", sans-serif; }
+.change-role { border: 0; padding: 0; background: transparent; color: #2563eb; font: 700 11px "DM Sans", sans-serif; cursor: pointer; }
+.change-role:hover { color: #7c3aed; }
+.selected-role { float: right; padding: 5px 9px; border-radius: 99px; background: #eef4ff; color: #2563eb; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.form-group { display: grid; gap: 7px; min-width: 0; }
+.form-group label { color: #334155; font-size: 11px; font-weight: 700; }
+.form-group input, .form-group select { width: 100%; height: 44px; box-sizing: border-box; border: 1px solid #dbe4f2; border-radius: 9px; padding: 0 12px; outline: 0; background: #fff; color: #172554; font: inherit; font-size: 12px; transition: 0.2s ease; }
+.form-group input::placeholder { color: #a4afbf; }
+.form-group input:focus, .form-group select:focus { border-color: #7ea4f7; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+.register-btn { margin-top: 3px; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; gap: 14px; } .register-panel { padding-top: 24px; } }

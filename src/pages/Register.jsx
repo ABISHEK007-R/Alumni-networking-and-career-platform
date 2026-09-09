@@ -60,30 +60,47 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-card">
-
-        <div className="register-header">
-          <h1>Alumni Connect AI</h1>
-          <p>AI Powered Alumni Career & Networking Platform</p>
+    <div className="auth-page register-page">
+      <section className="auth-hero" aria-label="Alumni Connect AI community">
+        <div className="auth-hero-glow auth-hero-glow-one" />
+        <div className="auth-hero-glow auth-hero-glow-two" />
+        <div className="auth-brand"><span className="auth-brand-mark">AC</span><span>Alumni Connect <b>AI</b></span></div>
+        <div className="auth-hero-copy">
+          <p className="auth-kicker">A network built around growth</p>
+          <h1>Your people, your opportunities, your next chapter.</h1>
+          <p>Join a community where students find direction and alumni create impact through meaningful professional connections.</p>
+          <div className="auth-benefits"><span>Build meaningful connections</span><span>Share knowledge and opportunities</span><span>Grow with your community</span></div>
         </div>
+        <div className="auth-network-card auth-network-card-main"><span className="network-pulse" /><strong>Community is growing</strong><small>New connections every day</small></div>
+        <div className="auth-network-card auth-network-card-small"><span>↗</span><strong>Make an impact</strong><small>Share what you know</small></div>
+        <div className="auth-network-lines" aria-hidden="true"><i /><i /><i /><i /></div>
+      </section>
+
+      <main className="auth-panel register-panel">
+        <div className="auth-card register-card">
+          <div className="auth-card-header">
+            <p className="auth-kicker">Join the community</p>
+            <h2>Create your account</h2>
+            <p>Set up your profile and start building your professional network.</p>
+          </div>
 
         {!userType && (
           <div className="role-selection">
-            <h2>Register As</h2>
+            <h3>How will you use Alumni Connect AI?</h3>
+            <p>Select the path that best describes you.</p>
 
             <button
-              className="role-btn"
+              className="role-btn role-btn-student"
               onClick={() => setUserType("Student")}
             >
-              Student
+              <span className="role-icon">◎</span><span><strong>I'm a student</strong><small>Find mentors, internships, and direction</small></span><b>→</b>
             </button>
 
             <button
-              className="role-btn"
+              className="role-btn role-btn-alumni"
               onClick={() => setUserType("Alumni")}
             >
-              Alumni
+              <span className="role-icon">✦</span><span><strong>I'm an alumni</strong><small>Share experience and support the next generation</small></span><b>→</b>
             </button>
           </div>
         )}
@@ -94,13 +111,14 @@ const Register = () => {
             {message && <p className="success-banner" role="status">{message}</p>}
             {error && <p className="error-banner" role="alert">{error}</p>}
 
-            <h2>{userType} Registration</h2>
+            <div className="register-form-heading"><button type="button" className="change-role" onClick={() => setUserType("")}>← Change role</button><span className="selected-role">{userType}</span><h3>Create your {userType.toLowerCase()} profile</h3></div>
 
             <div className="form-grid">
 
               <div className="form-group">
-                <label>Name</label>
+                <label htmlFor="register-name">Full name</label>
                 <input
+                  id="register-name"
                   type="text"
                   name="name"
                   required
@@ -110,8 +128,9 @@ const Register = () => {
 
               {userType === "Student" && (
                 <div className="form-group">
-                  <label>College</label>
+                  <label htmlFor="register-college">College</label>
                   <input
+                    id="register-college"
                     type="text"
                     name="college"
                     required
@@ -123,8 +142,9 @@ const Register = () => {
               {userType === "Alumni" && (
                 <>
                   <div className="form-group">
-                    <label>Company</label>
+                    <label htmlFor="register-company">Company</label>
                     <input
+                      id="register-company"
                       type="text"
                       name="company"
                       required
@@ -133,8 +153,9 @@ const Register = () => {
                   </div>
 
                   <div className="form-group">
-                    <label>Role</label>
+                    <label htmlFor="register-role">Role</label>
                     <input
+                      id="register-role"
                       type="text"
                       name="role"
                       required
@@ -143,8 +164,9 @@ const Register = () => {
                   </div>
 
                   <div className="form-group">
-                    <label>Experience</label>
+                    <label htmlFor="register-experience">Experience</label>
                     <input
+                      id="register-experience"
                       type="text"
                       name="experience"
                       placeholder="3 Years"
@@ -155,8 +177,9 @@ const Register = () => {
               )}
 
               <div className="form-group">
-                <label>Skills</label>
+                <label htmlFor="register-skills">Skills</label>
                 <input
+                  id="register-skills"
                   type="text"
                   name="skills"
                   placeholder="Java, AWS, Cybersecurity"
@@ -165,8 +188,9 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label>Location</label>
+                <label htmlFor="register-location">Location</label>
                 <input
+                  id="register-location"
                   type="text"
                   name="location"
                   onChange={handleChange}
@@ -174,8 +198,9 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label>Certifications</label>
+                <label htmlFor="register-certifications">Certifications</label>
                 <input
+                  id="register-certifications"
                   type="text"
                   name="certifications"
                   onChange={handleChange}
@@ -183,8 +208,9 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label>Projects</label>
+                <label htmlFor="register-projects">Projects</label>
                 <input
+                  id="register-projects"
                   type="text"
                   name="projects"
                   onChange={handleChange}
@@ -193,9 +219,10 @@ const Register = () => {
 
               {userType === "Alumni" && (
                 <div className="form-group">
-                  <label>Mentorship Availability</label>
+                  <label htmlFor="register-mentorship">Mentorship availability</label>
 
                   <select
+                    id="register-mentorship"
                     name="mentorship"
                     onChange={handleChange}
                   >
@@ -206,8 +233,9 @@ const Register = () => {
               )}
 
               <div className="form-group">
-                <label>Email</label>
+                <label htmlFor="register-email">Email address</label>
                 <input
+                  id="register-email"
                   type="email"
                   name="email"
                   required
@@ -216,8 +244,9 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label>Password</label>
+                <label htmlFor="register-password">Password</label>
                 <input
+                  id="register-password"
                   type="password"
                   name="password"
                   required
@@ -227,31 +256,16 @@ const Register = () => {
 
             </div>
 
-            <button className="register-btn">
+            <button className="register-btn auth-submit">
               {isSubmitting ? "Creating account..." : "Register"}
             </button>
-            <div style={{ textAlign: "center", marginTop: "15px" }}>
-  <p>Already have an account?</p>
-
-  <button
-    type="button"
-    onClick={() => navigate("/")}
-    className="back-btn"
-  >
-    Login
-  </button>
-</div>
-            <button
-              type="button"
-              className="back-btn"
-              onClick={() => setUserType("")}
-            >
-              Back
-            </button>
+            <div className="auth-switch"><span>Already have an account?</span><button type="button" onClick={() => navigate("/")}>Sign in</button></div>
 
           </form>
         )}
       </div>
+      <p className="auth-legal">By creating an account, you agree to our Terms of Service and Privacy Policy.</p>
+      </main>
     </div>
     
   );

@@ -37,118 +37,73 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#f4f6f8",
-      }}
-    >
-      <div
-        style={{
-          width: "400px",
-          padding: "30px",
-          backgroundColor: "#fff",
-          borderRadius: "12px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-        }}
-      >
-        <h1
-          style={{
-            textAlign: "center",
-            color: "#2563eb",
-          }}
-        >
-          Alumni Connect AI
-        </h1>
+    <div className="auth-page login-page">
+      <section className="auth-hero" aria-label="Alumni Connect AI benefits">
+        <div className="auth-hero-glow auth-hero-glow-one" />
+        <div className="auth-hero-glow auth-hero-glow-two" />
+        <div className="auth-brand"><span className="auth-brand-mark">AC</span><span>Alumni Connect <b>AI</b></span></div>
+        <div className="auth-hero-copy">
+          <p className="auth-kicker">Your next opportunity starts here</p>
+          <h1>Build a career with people who have been there.</h1>
+          <p>Connect with alumni mentors, discover meaningful opportunities, and get practical AI-powered guidance for every step ahead.</p>
+          <div className="auth-benefits">
+            <span>Connect with alumni mentors</span>
+            <span>Discover internship opportunities</span>
+            <span>Get AI-powered career guidance</span>
+          </div>
+        </div>
+        <div className="auth-network-card auth-network-card-main"><span className="network-pulse" /><strong>Career network</strong><small>18,000+ alumni connections</small></div>
+        <div className="auth-network-card auth-network-card-small"><span>✦</span><strong>AI guidance</strong><small>Personalized for you</small></div>
+        <div className="auth-network-lines" aria-hidden="true"><i /><i /><i /><i /></div>
+      </section>
 
-        <p
-          style={{
-            textAlign: "center",
-            color: "#666",
-            marginBottom: "25px",
-          }}
-        >
-          AI-Powered Alumni Career & Networking Platform
-        </p>
+      <main className="auth-panel">
+        <div className="auth-card">
+          <div className="auth-card-header">
+            <p className="auth-kicker">Welcome back</p>
+            <h2>Sign in to continue</h2>
+            <p>Continue your career journey with Alumni Connect AI.</p>
+          </div>
 
-        <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="auth-form">
           {message && <p className="success-banner" role="status">{message}</p>}
           {error && <p className="error-banner" role="alert">{error}</p>}
-          <div style={{ marginBottom: "15px" }}>
-            <label>Email</label>
+          <div className="auth-field">
+            <label htmlFor="login-email">Email address</label>
+            <div className="auth-input-wrap"><span aria-hidden="true">@</span>
             <input
+              id="login-email"
               type="email"
-              placeholder="Enter Email"
+              placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "10px",
-                marginTop: "5px",
-              }}
               required
             />
+            </div>
           </div>
 
-          <div style={{ marginBottom: "15px" }}>
-            <label>Password</label>
+          <div className="auth-field">
+            <label htmlFor="login-password">Password</label>
+            <div className="auth-input-wrap"><span aria-hidden="true">●</span>
             <input
+              id="login-password"
               type="password"
-              placeholder="Enter Password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "10px",
-                marginTop: "5px",
-              }}
               required
             />
+            </div>
           </div>
 
-          <button
-            type="submit"
-            style={{
-              width: "100%",
-              padding: "12px",
-              backgroundColor: "#2563eb",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}
-          >
-            Login
-          </button>
+          <div className="auth-form-meta"><label><input type="checkbox" /> <span>Remember me</span></label><a href="#forgot-password">Forgot password?</a></div>
+          <button type="submit" className="auth-submit">Sign in <span aria-hidden="true">→</span></button>
         </form>
 
-        <div
-          style={{
-            marginTop: "20px",
-            textAlign: "center",
-          }}
-        >
-          <p>Don't have an account?</p>
-
-<button
-  onClick={() => navigate("/register")}
-  style={{
-    padding: "10px 20px",
-    backgroundColor: "#10b981",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-  }}
->
-  Register
-</button>
+          <div className="auth-switch"><span>Don't have an account?</span><button type="button" onClick={() => navigate("/register")}>Create account</button></div>
         </div>
-      </div>
+        <p className="auth-legal">By continuing, you agree to our Terms of Service and Privacy Policy.</p>
+      </main>
     </div>
   );
 };
